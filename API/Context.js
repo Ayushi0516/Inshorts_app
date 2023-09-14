@@ -1,4 +1,3 @@
-
 import React, { createContext, useEffect, useState } from "react";
 import { getNewsAPI, getSourceAPI } from "./api";
 import axios from "axios";
@@ -17,10 +16,23 @@ const Context = ({ children }) => {
     setNews(data);
     setIndex(1);
   };
+  const fetchNewsfromSource = async () => {
+    try {
+      const { data } = await axios.get(getSourceAPI(source));
+      setNews(data);
+      setIndex(1);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     fetchNews();
   }, [category]);
+
+  useEffect(() => {
+    fetchNewsfromSource();
+  }, [source]);
 
   return (
     <NewsContext.Provider

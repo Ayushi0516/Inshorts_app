@@ -1,17 +1,18 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { MaterialCommunityIcons, SimpleLineIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
+import { NewsContext } from "../API/Context";
 
 export default function TopNavigation({ index, setIndex }) {
+  const { fetchNews } = useContext(NewsContext);
+
   return (
     <View style={{ ...styles.container, backgroundColor: "#282c35" }}>
       {index === 0 ? (
         <TouchableOpacity style={styles.left}>
-          <Text
-            style={{ ...styles.text, color: "lightgrey"  }}
-          >
+          <Text style={{ ...styles.text, color: "lightgrey" }}>
             <MaterialCommunityIcons
               name="theme-light-dark"
               size={24}
@@ -20,20 +21,21 @@ export default function TopNavigation({ index, setIndex }) {
           </Text>
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity style={styles.left}
-        onPress={() => setIndex(index === 0 ? 1 : 0)}
+        <TouchableOpacity
+          style={styles.left}
+          onPress={() => setIndex(index === 0 ? 1 : 0)}
         >
           <SimpleLineIcons name="arrow-left" size={15} color="#007FFF" />
           <Text style={{ ...styles.text, color: "lightgrey" }}>Discover</Text>
         </TouchableOpacity>
       )}
-       <Text style={{ ...styles.center, color:  "white" }}>
+      <Text style={{ ...styles.center, color: "white" }}>
         {index ? "All News" : "Discover"}
       </Text>
       {index ? (
         <TouchableOpacity
           style={styles.right}
-          // onPress={() => fetchNews("general")}
+          onPress={() => fetchNews("general")}
         >
           <Text style={styles.text}>
             <AntDesign name="reload1" size={24} color="#007FFF" />
@@ -44,11 +46,7 @@ export default function TopNavigation({ index, setIndex }) {
           style={styles.left}
           onPress={() => setIndex(index === 0 ? 1 : 0)}
         >
-          <Text
-            style={{ ...styles.text, color:  "white"  }}
-          >
-            All News
-          </Text>
+          <Text style={{ ...styles.text, color: "white" }}>All News</Text>
           <SimpleLineIcons name="arrow-right" size={15} color="#007FFF" />
         </TouchableOpacity>
       )}
