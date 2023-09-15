@@ -10,6 +10,7 @@ import React, { useContext } from "react";
 import { NewsContext } from "../API/Context";
 import Carousel from "react-native-snap-carousel";
 import { categories, sources } from "../API/api";
+import Search from "../components/Search";
 
 export default function DiscoverScreen() {
   const windowWidth = Dimensions.get("window").width;
@@ -17,6 +18,8 @@ export default function DiscoverScreen() {
   const { setCategory, setSource } = useContext(NewsContext);
   return (
     <View style={styles.discover}>
+      <Search/>
+      
       <Text style={{ ...styles.subtitle, color: "white" }}>Categories</Text>
       <Carousel
         layout={"default"}
