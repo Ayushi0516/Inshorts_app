@@ -15,7 +15,7 @@ import SingleNews from './SingleNews';
 
 export default function Search() {
     const {
-   
+         darkTheme,
         news: { articles },
       } = useContext(NewsContext);
     
@@ -40,12 +40,12 @@ export default function Search() {
       <TextInput
         style={{
           ...styles.search,
-          backgroundColor:  "black",
-          color:  "white" ,
+          backgroundColor: darkTheme ? "black" : "lightgrey",
+          color:  darkTheme ? "white" : "black" ,
         }}
         onChangeText={(text) => handleSearch(text)}
         placeholder="Search for news"
-        placeholderTextColor={ "white" }
+        placeholderTextColor={darkTheme ? "white" : "grey"}
       />
       <View style={styles.searchResults}>
         {searchResults.slice(0, 10).map((n) => (
@@ -57,8 +57,8 @@ export default function Search() {
             <Text
               style={{
                 ...styles.singleResult,
-                backgroundColor: "black"  ,
-                color: "white"  
+                backgroundColor:darkTheme ? "black" : "white" ,
+                color: darkTheme ? "white" : "black",  
               }}
             >
               {n.title}
@@ -87,7 +87,7 @@ export default function Search() {
           <Entypo name="circle-with-cross" size={30} color="white" />
         </TouchableOpacity>
         <View style={{ height: "100%", transform: [{ scaleY: -1 }] }}>
-          <SingleNews item={currentNews}  />
+          <SingleNews item={currentNews}  darkTheme={darkTheme}  />
           {/* darkTheme={darkTheme} */}
         </View>
       </Modal>

@@ -5,7 +5,7 @@ import Carousel from 'react-native-snap-carousel'
 import SingleNews from '../components/SingleNews'
 
 export default function NewsScreen() {
-  const { news: {articles}}=useContext(NewsContext)
+  const { news: {articles},darkTheme}=useContext(NewsContext)
   const [activeIndex, setActiveIndex] = useState();
   const windowHeight = Dimensions.get("window").height;
   
@@ -14,13 +14,14 @@ export default function NewsScreen() {
      {
       articles && (
         <Carousel
+        firstItem={articles.slice(0, 10).length - 1}
         layout={'stack'}
         data={articles.slice(0, 10)}
          sliderHeight={300}
         itemHeight={windowHeight}
         vertical={true}
           renderItem={({ item, index }) => (
-            <SingleNews item={item} index={index}  />
+            <SingleNews item={item} index={index} darkTheme={darkTheme} />
           )}
           onSnapToItem={(index) => setActiveIndex(index)}
         />

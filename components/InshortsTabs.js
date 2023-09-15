@@ -19,6 +19,7 @@ const {index,setIndex}=useContext(NewsContext)
   const renderScene = SceneMap({
     first: DiscoverScreen,
     second: NewsScreen,
+    
   });
   return (
     <TabView

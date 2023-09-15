@@ -15,12 +15,12 @@ import Search from "../components/Search";
 export default function DiscoverScreen() {
   const windowWidth = Dimensions.get("window").width;
   const SLIDE_WIDTH = Math.round(windowWidth / 3.5);
-  const { setCategory, setSource } = useContext(NewsContext);
+  const { setCategory, setSource, darkTheme } = useContext(NewsContext);
   return (
     <View style={styles.discover}>
       <Search/>
       
-      <Text style={{ ...styles.subtitle, color: "white" }}>Categories</Text>
+      <Text style={{ ...styles.subtitle, color: darkTheme ? "white" : "black" }}>Categories</Text>
       <Carousel
         layout={"default"}
         data={categories}
@@ -31,7 +31,7 @@ export default function DiscoverScreen() {
               style={styles.category}
             >
               <Image source={{ uri: item.pic }} style={styles.categoryImage} />
-              <Text style={{ ...styles.name, color: "white" }}>
+              <Text style={{ ...styles.name, color: darkTheme ? "white" : "black" }}>
                 {item.name}
               </Text>
             </TouchableOpacity>
@@ -44,7 +44,7 @@ export default function DiscoverScreen() {
         inactiveSlideOpacity={1}
       />
 
-      <Text style={{ ...styles.subtitle, color: "white" }}>Sources</Text>
+      <Text style={{ ...styles.subtitle, color: darkTheme ? "white" : "black" }}>Sources</Text>
 
       <View style={styles.sources}>
         {sources.map((s) => (
