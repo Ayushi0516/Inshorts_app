@@ -9,7 +9,7 @@ export default function TopNavigation({ index, setIndex }) {
   const { fetchNews, darkTheme, setDarkTheme } = useContext(NewsContext);
 
   return (
-    <View style={{ ...styles.container, backgroundColor: "#282c35" }}>
+    <View style={{ ...styles.container, backgroundColor:darkTheme ? "#282C35" : "white" }}>
       {index === 0 ? (
         <TouchableOpacity
           style={styles.left}

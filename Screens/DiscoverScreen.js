@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   name: {
-    fontSize: 14,
+    fontSize: 12,
     textTransform: "capitalize",
   },
   sources: {
